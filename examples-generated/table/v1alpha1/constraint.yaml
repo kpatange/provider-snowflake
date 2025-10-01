@@ -1,0 +1,91 @@
+apiVersion: table.crossplane.io/v1alpha1
+kind: Constraint
+metadata:
+  annotations:
+    meta.upbound.io/example-id: table/v1alpha1/constraint
+  labels:
+    testing.upbound.io/example-name: primary_key
+  name: primary-key
+spec:
+  forProvider:
+    columns:
+    - col1
+    comment: hello world
+    tableId: ${snowflake_table.t.fully_qualified_name}
+    type: PRIMARY KEY
+
+---
+
+apiVersion: snowflakedatabase.crossplane.io/v1alpha1
+kind: Database
+metadata:
+  annotations:
+    meta.upbound.io/example-id: table/v1alpha1/constraint
+  labels:
+    testing.upbound.io/example-name: d
+  name: d
+spec:
+  forProvider:
+    name: some_db
+
+---
+
+apiVersion: snowflakeschema.crossplane.io/v1alpha1
+kind: Schema
+metadata:
+  annotations:
+    meta.upbound.io/example-id: table/v1alpha1/constraint
+  labels:
+    testing.upbound.io/example-name: s
+  name: s
+spec:
+  forProvider:
+    database: some_db
+    name: some_schema
+
+---
+
+apiVersion: snowflake.crossplane.io/v1alpha1
+kind: Table
+metadata:
+  annotations:
+    meta.upbound.io/example-id: table/v1alpha1/constraint
+  labels:
+    testing.upbound.io/example-name: fk_t
+  name: fk-t
+spec:
+  forProvider:
+    column:
+    - name: fk_col1
+      nullable: false
+      type: text
+    - name: fk_col2
+      nullable: false
+      type: text
+    database: some_db
+    schema: some_schema
+
+---
+
+apiVersion: snowflake.crossplane.io/v1alpha1
+kind: Table
+metadata:
+  annotations:
+    meta.upbound.io/example-id: table/v1alpha1/constraint
+  labels:
+    testing.upbound.io/example-name: t
+  name: t
+spec:
+  forProvider:
+    column:
+    - name: col1
+      nullable: false
+      type: text
+    - name: col2
+      nullable: false
+      type: text
+    - name: col3
+      nullable: false
+      type: text
+    database: some_db
+    schema: some_schema

@@ -58,6 +58,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"snowflake_task":                                       config.IdentifierFromProvider,
 	"snowflake_user":                                       config.IdentifierFromProvider,
 	"snowflake_view":                                       config.IdentifierFromProvider,
+	"snowflake_file_format":                                config.IdentifierFromProvider,
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the

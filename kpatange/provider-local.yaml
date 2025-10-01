@@ -1,0 +1,6 @@
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: provider-snowflake-local
+spec:
+  package: xpkg.upbound.io/valkiriaaquaticamendi/provider-snowflake:v1.0.0

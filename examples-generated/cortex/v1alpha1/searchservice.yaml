@@ -1,0 +1,68 @@
+apiVersion: cortex.crossplane.io/v1alpha1
+kind: SearchService
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cortex/v1alpha1/searchservice
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    comment: some comment
+    database: database_name
+    embeddingModel: snowflake-arctic-embed-m-v1.5
+    "on": SOME_TEXT
+    query: SELECT SOME_TEXT FROM "some_database"."some_schema"."some_table"
+    schema: schema_name
+    targetLag: 2 minutes
+    warehouse: some_warehouse
+
+---
+
+apiVersion: snowflakedatabase.crossplane.io/v1alpha1
+kind: Database
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cortex/v1alpha1/searchservice
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    name: some_database
+
+---
+
+apiVersion: snowflakeschema.crossplane.io/v1alpha1
+kind: Schema
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cortex/v1alpha1/searchservice
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    database: some_database
+    name: some_schema
+
+---
+
+apiVersion: snowflake.crossplane.io/v1alpha1
+kind: Table
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cortex/v1alpha1/searchservice
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    changeTracking: true
+    column:
+    - name: ID
+      type: NUMBER(38,0)
+    - name: SOME_TEXT
+      type: VARCHAR
+    database: some_database
+    schema: some_schema

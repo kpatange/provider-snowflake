@@ -1,0 +1,24 @@
+apiVersion: function.crossplane.io/v1alpha1
+kind: Python
+metadata:
+  annotations:
+    meta.upbound.io/example-id: function/v1alpha1/python
+  labels:
+    testing.upbound.io/example-name: minimal
+  name: minimal
+spec:
+  forProvider:
+    arguments:
+    - argDataType: NUMBER(36, 2)
+      argName: x
+    database: database_name
+    functionDefinition: |
+      def some_function(x):
+        result = ''
+        for a in range(5):
+          result += x
+        return result
+    handler: some_function
+    returnType: NUMBER(36, 2)
+    runtimeVersion: "3.9"
+    schema: schema_name

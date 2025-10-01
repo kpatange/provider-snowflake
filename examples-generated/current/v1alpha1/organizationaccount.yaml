@@ -1,0 +1,10 @@
+apiVersion: current.crossplane.io/v1alpha1
+kind: OrganizationAccount
+metadata:
+  annotations:
+    meta.upbound.io/example-id: current/v1alpha1/organizationaccount
+  labels:
+    testing.upbound.io/example-name: minimal
+  name: minimal
+spec:
+  forProvider: {}

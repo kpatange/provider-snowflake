@@ -1,0 +1,18 @@
+apiVersion: materialized.crossplane.io/v1alpha1
+kind: View
+metadata:
+  annotations:
+    meta.upbound.io/example-id: materialized/v1alpha1/view
+  labels:
+    testing.upbound.io/example-name: view
+  name: view
+spec:
+  forProvider:
+    comment: comment
+    database: db
+    isSecure: false
+    orReplace: false
+    schema: schema
+    statement: |
+      select * from foo;
+    warehouse: warehouse

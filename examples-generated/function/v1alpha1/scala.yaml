@@ -1,0 +1,24 @@
+apiVersion: function.crossplane.io/v1alpha1
+kind: Scala
+metadata:
+  annotations:
+    meta.upbound.io/example-id: function/v1alpha1/scala
+  labels:
+    testing.upbound.io/example-name: minimal
+  name: minimal
+spec:
+  forProvider:
+    arguments:
+    - argDataType: VARCHAR(100)
+      argName: x
+    database: database_name
+    functionDefinition: |2
+        class TestFunc {
+          def echoVarchar(x : String): String = {
+            return x
+          }
+        }
+    handler: TestFunc.echoVarchar
+    returnType: VARCHAR(100)
+    runtimeVersion: "2.12"
+    schema: schema_name

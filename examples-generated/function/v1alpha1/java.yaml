@@ -1,0 +1,23 @@
+apiVersion: function.crossplane.io/v1alpha1
+kind: Java
+metadata:
+  annotations:
+    meta.upbound.io/example-id: function/v1alpha1/java
+  labels:
+    testing.upbound.io/example-name: w
+  name: w
+spec:
+  forProvider:
+    arguments:
+    - argDataType: VARCHAR(100)
+      argName: x
+    database: Database
+    functionDefinition: |2
+        class TestFunc {
+          public static String echoVarchar(String x) {
+            return x;
+          }
+        }
+    handler: TestFunc.echoVarchar
+    returnType: VARCHAR(100)
+    schema: Schema

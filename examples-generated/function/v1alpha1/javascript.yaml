@@ -1,0 +1,22 @@
+apiVersion: function.crossplane.io/v1alpha1
+kind: Javascript
+metadata:
+  annotations:
+    meta.upbound.io/example-id: function/v1alpha1/javascript
+  labels:
+    testing.upbound.io/example-name: minimal
+  name: minimal
+spec:
+  forProvider:
+    arguments:
+    - argDataType: VARIANT
+      argName: x
+    database: database_name
+    functionDefinition: |2
+        if (x == 0) {
+          return 1;
+        } else {
+          return 2;
+        }
+    returnType: VARIANT
+    schema: schema_name

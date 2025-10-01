@@ -1,0 +1,17 @@
+apiVersion: notification.crossplane.io/v1alpha1
+kind: Integration
+metadata:
+  annotations:
+    meta.upbound.io/example-id: notification/v1alpha1/integration
+  labels:
+    testing.upbound.io/example-name: integration
+  name: integration
+spec:
+  forProvider:
+    azureStorageQueuePrimaryUri: '...'
+    azureTenantId: '...'
+    comment: A notification integration.
+    direction: OUTBOUND
+    enabled: true
+    notificationProvider: AZURE_STORAGE_QUEUE
+    type: QUEUE

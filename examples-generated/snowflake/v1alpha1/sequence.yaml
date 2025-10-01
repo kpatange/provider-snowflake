@@ -1,0 +1,41 @@
+apiVersion: snowflake.crossplane.io/v1alpha1
+kind: Sequence
+metadata:
+  annotations:
+    meta.upbound.io/example-id: snowflake/v1alpha1/sequence
+  labels:
+    testing.upbound.io/example-name: test_sequence
+  name: test-sequence
+spec:
+  forProvider:
+    database: database_name
+    schema: schema_name
+
+---
+
+apiVersion: snowflakedatabase.crossplane.io/v1alpha1
+kind: Database
+metadata:
+  annotations:
+    meta.upbound.io/example-id: snowflake/v1alpha1/sequence
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    name: things
+
+---
+
+apiVersion: snowflakeschema.crossplane.io/v1alpha1
+kind: Schema
+metadata:
+  annotations:
+    meta.upbound.io/example-id: snowflake/v1alpha1/sequence
+  labels:
+    testing.upbound.io/example-name: test_schema
+  name: test-schema
+spec:
+  forProvider:
+    database: things
+    name: things

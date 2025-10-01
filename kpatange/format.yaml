@@ -1,0 +1,9 @@
+apiVersion: snowflakefileformat.crossplane.io/v1alpha1
+kind: Format
+metadata:
+  name: example-file-format
+spec:
+  forProvider:
+    database: CROSS_DB
+    formatType: CSV
+    schema: UPJET

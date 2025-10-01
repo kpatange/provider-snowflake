@@ -1,0 +1,12 @@
+apiVersion: image.crossplane.io/v1alpha1
+kind: Repository
+metadata:
+  annotations:
+    meta.upbound.io/example-id: image/v1alpha1/repository
+  labels:
+    testing.upbound.io/example-name: basic
+  name: basic
+spec:
+  forProvider:
+    database: DATABASE
+    schema: SCHEMA

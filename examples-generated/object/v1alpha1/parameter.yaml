@@ -1,0 +1,62 @@
+apiVersion: object.crossplane.io/v1alpha1
+kind: Parameter
+metadata:
+  annotations:
+    meta.upbound.io/example-id: object/v1alpha1/parameter
+  labels:
+    testing.upbound.io/example-name: o
+  name: o
+spec:
+  forProvider:
+    key: SUSPEND_TASK_AFTER_NUM_FAILURES
+    objectIdentifier:
+    - name: database_name
+    objectType: DATABASE
+    value: "33"
+
+---
+
+apiVersion: snowflakedatabase.crossplane.io/v1alpha1
+kind: Database
+metadata:
+  annotations:
+    meta.upbound.io/example-id: object/v1alpha1/parameter
+  labels:
+    testing.upbound.io/example-name: d
+  name: d
+spec:
+  forProvider:
+    name: TEST_DB
+
+---
+
+apiVersion: snowflakeschema.crossplane.io/v1alpha1
+kind: Schema
+metadata:
+  annotations:
+    meta.upbound.io/example-id: object/v1alpha1/parameter
+  labels:
+    testing.upbound.io/example-name: s
+  name: s
+spec:
+  forProvider:
+    database: TEST_DB
+    name: TEST_SCHEMA
+
+---
+
+apiVersion: snowflake.crossplane.io/v1alpha1
+kind: Table
+metadata:
+  annotations:
+    meta.upbound.io/example-id: object/v1alpha1/parameter
+  labels:
+    testing.upbound.io/example-name: t
+  name: t
+spec:
+  forProvider:
+    column:
+    - name: id
+      type: NUMBER
+    database: TEST_DB
+    schema: TEST_SCHEMA

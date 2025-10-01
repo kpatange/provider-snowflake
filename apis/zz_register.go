@@ -10,7 +10,29 @@ package apis
 import (
 	"k8s.io/apimachinery/pkg/runtime"
 
-	v1alpha1 "github.com/valkiriaaquatica/provider-snowflake/apis/snowflakeaccount/v1alpha1"
+	v1alpha1 "github.com/valkiriaaquatica/provider-snowflake/apis/account/v1alpha1"
+	v1alpha1api "github.com/valkiriaaquatica/provider-snowflake/apis/api/v1alpha1"
+	v1alpha1compute "github.com/valkiriaaquatica/provider-snowflake/apis/compute/v1alpha1"
+	v1alpha1cortex "github.com/valkiriaaquatica/provider-snowflake/apis/cortex/v1alpha1"
+	v1alpha1current "github.com/valkiriaaquatica/provider-snowflake/apis/current/v1alpha1"
+	v1alpha1dynamic "github.com/valkiriaaquatica/provider-snowflake/apis/dynamic/v1alpha1"
+	v1alpha1email "github.com/valkiriaaquatica/provider-snowflake/apis/email/v1alpha1"
+	v1alpha1external "github.com/valkiriaaquatica/provider-snowflake/apis/external/v1alpha1"
+	v1alpha1failover "github.com/valkiriaaquatica/provider-snowflake/apis/failover/v1alpha1"
+	v1alpha1function "github.com/valkiriaaquatica/provider-snowflake/apis/function/v1alpha1"
+	v1alpha1git "github.com/valkiriaaquatica/provider-snowflake/apis/git/v1alpha1"
+	v1alpha1grant "github.com/valkiriaaquatica/provider-snowflake/apis/grant/v1alpha1"
+	v1alpha1image "github.com/valkiriaaquatica/provider-snowflake/apis/image/v1alpha1"
+	v1alpha1job "github.com/valkiriaaquatica/provider-snowflake/apis/job/v1alpha1"
+	v1alpha1managed "github.com/valkiriaaquatica/provider-snowflake/apis/managed/v1alpha1"
+	v1alpha1materialized "github.com/valkiriaaquatica/provider-snowflake/apis/materialized/v1alpha1"
+	v1alpha1network "github.com/valkiriaaquatica/provider-snowflake/apis/network/v1alpha1"
+	v1alpha1notification "github.com/valkiriaaquatica/provider-snowflake/apis/notification/v1alpha1"
+	v1alpha1object "github.com/valkiriaaquatica/provider-snowflake/apis/object/v1alpha1"
+	v1alpha1password "github.com/valkiriaaquatica/provider-snowflake/apis/password/v1alpha1"
+	v1alpha1procedure "github.com/valkiriaaquatica/provider-snowflake/apis/procedure/v1alpha1"
+	v1alpha1snowflake "github.com/valkiriaaquatica/provider-snowflake/apis/snowflake/v1alpha1"
+	v1alpha1snowflakeaccount "github.com/valkiriaaquatica/provider-snowflake/apis/snowflakeaccount/v1alpha1"
 	v1alpha1snowflakeaccountparameter "github.com/valkiriaaquatica/provider-snowflake/apis/snowflakeaccountparameter/v1alpha1"
 	v1alpha1snowflakeaccountrole "github.com/valkiriaaquatica/provider-snowflake/apis/snowflakeaccountrole/v1alpha1"
 	v1alpha1snowflakeapiauthenticationintegrationwithauthorizationcodegrant "github.com/valkiriaaquatica/provider-snowflake/apis/snowflakeapiauthenticationintegrationwithauthorizationcodegrant/v1alpha1"
@@ -21,6 +43,7 @@ import (
 	v1alpha1snowflakedatabaserole "github.com/valkiriaaquatica/provider-snowflake/apis/snowflakedatabaserole/v1alpha1"
 	v1alpha1snowflakeexecute "github.com/valkiriaaquatica/provider-snowflake/apis/snowflakeexecute/v1alpha1"
 	v1alpha1snowflakeexternaloauthintegration "github.com/valkiriaaquatica/provider-snowflake/apis/snowflakeexternaloauthintegration/v1alpha1"
+	v1alpha1snowflakefileformat "github.com/valkiriaaquatica/provider-snowflake/apis/snowflakefileformat/v1alpha1"
 	v1alpha1snowflakegrantaccountrole "github.com/valkiriaaquatica/provider-snowflake/apis/snowflakegrantaccountrole/v1alpha1"
 	v1alpha1snowflakegrantapplicationrole "github.com/valkiriaaquatica/provider-snowflake/apis/snowflakegrantapplicationrole/v1alpha1"
 	v1alpha1snowflakegrantownership "github.com/valkiriaaquatica/provider-snowflake/apis/snowflakegrantownership/v1alpha1"
@@ -41,6 +64,7 @@ import (
 	v1alpha1snowflakesecondaryconnection "github.com/valkiriaaquatica/provider-snowflake/apis/snowflakesecondaryconnection/v1alpha1"
 	v1alpha1snowflakesecondarydatabase "github.com/valkiriaaquatica/provider-snowflake/apis/snowflakesecondarydatabase/v1alpha1"
 	v1alpha1snowflakesecretwithauthorizationcodegrant "github.com/valkiriaaquatica/provider-snowflake/apis/snowflakesecretwithauthorizationcodegrant/v1alpha1"
+	v1alpha1snowflakesecretwithbasicauthentication "github.com/valkiriaaquatica/provider-snowflake/apis/snowflakesecretwithbasicauthentication/v1alpha1"
 	v1alpha1snowflakesecretwithclientcredentials "github.com/valkiriaaquatica/provider-snowflake/apis/snowflakesecretwithclientcredentials/v1alpha1"
 	v1alpha1snowflakesecretwithgenericstring "github.com/valkiriaaquatica/provider-snowflake/apis/snowflakesecretwithgenericstring/v1alpha1"
 	v1alpha1snowflakeserviceuser "github.com/valkiriaaquatica/provider-snowflake/apis/snowflakeserviceuser/v1alpha1"
@@ -56,6 +80,9 @@ import (
 	v1alpha1snowflakeuser "github.com/valkiriaaquatica/provider-snowflake/apis/snowflakeuser/v1alpha1"
 	v1alpha1snowflakeview "github.com/valkiriaaquatica/provider-snowflake/apis/snowflakeview/v1alpha1"
 	v1alpha1snowflakewarehouse "github.com/valkiriaaquatica/provider-snowflake/apis/snowflakewarehouse/v1alpha1"
+	v1alpha1storage "github.com/valkiriaaquatica/provider-snowflake/apis/storage/v1alpha1"
+	v1alpha1table "github.com/valkiriaaquatica/provider-snowflake/apis/table/v1alpha1"
+	v1alpha1user "github.com/valkiriaaquatica/provider-snowflake/apis/user/v1alpha1"
 	v1alpha1apis "github.com/valkiriaaquatica/provider-snowflake/apis/v1alpha1"
 	v1beta1 "github.com/valkiriaaquatica/provider-snowflake/apis/v1beta1"
 )
@@ -64,6 +91,28 @@ func init() {
 	// Register the types with the Scheme so the components can map objects to GroupVersionKinds and back
 	AddToSchemes = append(AddToSchemes,
 		v1alpha1.SchemeBuilder.AddToScheme,
+		v1alpha1api.SchemeBuilder.AddToScheme,
+		v1alpha1compute.SchemeBuilder.AddToScheme,
+		v1alpha1cortex.SchemeBuilder.AddToScheme,
+		v1alpha1current.SchemeBuilder.AddToScheme,
+		v1alpha1dynamic.SchemeBuilder.AddToScheme,
+		v1alpha1email.SchemeBuilder.AddToScheme,
+		v1alpha1external.SchemeBuilder.AddToScheme,
+		v1alpha1failover.SchemeBuilder.AddToScheme,
+		v1alpha1function.SchemeBuilder.AddToScheme,
+		v1alpha1git.SchemeBuilder.AddToScheme,
+		v1alpha1grant.SchemeBuilder.AddToScheme,
+		v1alpha1image.SchemeBuilder.AddToScheme,
+		v1alpha1job.SchemeBuilder.AddToScheme,
+		v1alpha1managed.SchemeBuilder.AddToScheme,
+		v1alpha1materialized.SchemeBuilder.AddToScheme,
+		v1alpha1network.SchemeBuilder.AddToScheme,
+		v1alpha1notification.SchemeBuilder.AddToScheme,
+		v1alpha1object.SchemeBuilder.AddToScheme,
+		v1alpha1password.SchemeBuilder.AddToScheme,
+		v1alpha1procedure.SchemeBuilder.AddToScheme,
+		v1alpha1snowflake.SchemeBuilder.AddToScheme,
+		v1alpha1snowflakeaccount.SchemeBuilder.AddToScheme,
 		v1alpha1snowflakeaccountparameter.SchemeBuilder.AddToScheme,
 		v1alpha1snowflakeaccountrole.SchemeBuilder.AddToScheme,
 		v1alpha1snowflakeapiauthenticationintegrationwithauthorizationcodegrant.SchemeBuilder.AddToScheme,
@@ -74,6 +123,7 @@ func init() {
 		v1alpha1snowflakedatabaserole.SchemeBuilder.AddToScheme,
 		v1alpha1snowflakeexecute.SchemeBuilder.AddToScheme,
 		v1alpha1snowflakeexternaloauthintegration.SchemeBuilder.AddToScheme,
+		v1alpha1snowflakefileformat.SchemeBuilder.AddToScheme,
 		v1alpha1snowflakegrantaccountrole.SchemeBuilder.AddToScheme,
 		v1alpha1snowflakegrantapplicationrole.SchemeBuilder.AddToScheme,
 		v1alpha1snowflakegrantownership.SchemeBuilder.AddToScheme,
@@ -94,6 +144,7 @@ func init() {
 		v1alpha1snowflakesecondaryconnection.SchemeBuilder.AddToScheme,
 		v1alpha1snowflakesecondarydatabase.SchemeBuilder.AddToScheme,
 		v1alpha1snowflakesecretwithauthorizationcodegrant.SchemeBuilder.AddToScheme,
+		v1alpha1snowflakesecretwithbasicauthentication.SchemeBuilder.AddToScheme,
 		v1alpha1snowflakesecretwithclientcredentials.SchemeBuilder.AddToScheme,
 		v1alpha1snowflakesecretwithgenericstring.SchemeBuilder.AddToScheme,
 		v1alpha1snowflakeserviceuser.SchemeBuilder.AddToScheme,
@@ -109,6 +160,9 @@ func init() {
 		v1alpha1snowflakeuser.SchemeBuilder.AddToScheme,
 		v1alpha1snowflakeview.SchemeBuilder.AddToScheme,
 		v1alpha1snowflakewarehouse.SchemeBuilder.AddToScheme,
+		v1alpha1storage.SchemeBuilder.AddToScheme,
+		v1alpha1table.SchemeBuilder.AddToScheme,
+		v1alpha1user.SchemeBuilder.AddToScheme,
 		v1alpha1apis.SchemeBuilder.AddToScheme,
 		v1beta1.SchemeBuilder.AddToScheme,
 	)

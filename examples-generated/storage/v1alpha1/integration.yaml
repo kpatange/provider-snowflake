@@ -1,0 +1,16 @@
+apiVersion: storage.crossplane.io/v1alpha1
+kind: Integration
+metadata:
+  annotations:
+    meta.upbound.io/example-id: storage/v1alpha1/integration
+  labels:
+    testing.upbound.io/example-name: integration
+  name: integration
+spec:
+  forProvider:
+    comment: A storage integration.
+    enabled: true
+    storageAwsExternalId: ABC12345_DEFRole=2_123ABC459AWQmtAdRqwe/A==
+    storageAwsRoleArn: '...'
+    storageProvider: S3
+    type: EXTERNAL_STAGE

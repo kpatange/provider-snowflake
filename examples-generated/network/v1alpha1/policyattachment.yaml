@@ -1,0 +1,15 @@
+apiVersion: network.crossplane.io/v1alpha1
+kind: PolicyAttachment
+metadata:
+  annotations:
+    meta.upbound.io/example-id: network/v1alpha1/policyattachment
+  labels:
+    testing.upbound.io/example-name: attach
+  name: attach
+spec:
+  forProvider:
+    networkPolicyName: policy
+    setForAccount: false
+    users:
+    - user1
+    - user2

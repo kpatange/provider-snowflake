@@ -1,0 +1,27 @@
+apiVersion: account.crossplane.io/v1alpha1
+kind: AuthenticationPolicyAttachment
+metadata:
+  annotations:
+    meta.upbound.io/example-id: account/v1alpha1/authenticationpolicyattachment
+  labels:
+    testing.upbound.io/example-name: attachment
+  name: attachment
+spec:
+  forProvider:
+    authenticationPolicy: ${snowflake_authentication_policy.default.fully_qualified_name}
+
+---
+
+apiVersion: snowflakeauthenticationpolicy.crossplane.io/v1alpha1
+kind: Policy
+metadata:
+  annotations:
+    meta.upbound.io/example-id: account/v1alpha1/authenticationpolicyattachment
+  labels:
+    testing.upbound.io/example-name: default
+  name: default
+spec:
+  forProvider:
+    database: prod
+    name: default_policy
+    schema: security

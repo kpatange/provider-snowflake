@@ -26,3 +26,16 @@ metadata:
 spec:
   forProvider:
     name: test
+
+---
+
+apiVersion: snowflake.crossplane.io/v1alpha1
+kind: Share
+metadata:
+  annotations:
+    meta.upbound.io/example-id: snowflakegrantprivilegestoshare/v1alpha1/privilegestoshare
+  labels:
+    testing.upbound.io/example-name: example
+  name: example
+spec:
+  forProvider: {}

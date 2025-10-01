@@ -1,0 +1,20 @@
+apiVersion: pkg.crossplane.io/v1beta1
+kind: DeploymentRuntimeConfig
+metadata:
+  name: default
+spec:
+  deploymentTemplate:
+    spec:
+      selector:
+        matchLabels:
+          app: package-runtime
+      template:
+        metadata:
+          labels:
+            app: package-runtime
+        spec:
+          containers:
+          - name: package-runtime
+            env:
+              - name: SNOWFLAKE_PREVIEW_FEATURES_ENABLED
+                value: "[\"snowflake_file_format_resource\"]"

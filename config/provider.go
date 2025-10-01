@@ -9,7 +9,7 @@ import (
 	_ "embed"
 
 	ujconfig "github.com/crossplane/upjet/pkg/config"
-
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/valkiriaaquatica/provider-snowflake/config/snowflakeaccount"
 	"github.com/valkiriaaquatica/provider-snowflake/config/snowflakeaccountparameter"
 	"github.com/valkiriaaquatica/provider-snowflake/config/snowflakeaccountrole"
@@ -21,6 +21,7 @@ import (
 	"github.com/valkiriaaquatica/provider-snowflake/config/snowflakedatabaserole"
 	"github.com/valkiriaaquatica/provider-snowflake/config/snowflakeexecute"
 	"github.com/valkiriaaquatica/provider-snowflake/config/snowflakeexternaloauthintegration"
+	"github.com/valkiriaaquatica/provider-snowflake/config/snowflakefileformat"
 	"github.com/valkiriaaquatica/provider-snowflake/config/snowflakegrantaccountrole"
 	"github.com/valkiriaaquatica/provider-snowflake/config/snowflakegrantapplicationrole"
 	"github.com/valkiriaaquatica/provider-snowflake/config/snowflakegrantownership"
@@ -74,11 +75,22 @@ var providerMetadata string
 func GetProvider() *ujconfig.Provider {
 	pc := ujconfig.NewProvider([]byte(providerSchema), resourcePrefix, modulePath, []byte(providerMetadata),
 		ujconfig.WithRootGroup("crossplane.io"),
-		ujconfig.WithIncludeList(ExternalNameConfigured()),
+		//ujconfig.WithIncludeList(ExternalNameConfigured()),
 		ujconfig.WithFeaturesPackage("internal/features"),
 		ujconfig.WithDefaultResourceOptions(
 			ExternalNameConfigurations(),
-		))
+		),
+		ujconfig.WithTerraformProvider(&schema.Provider{
+			Schema: map[string]*schema.Schema{
+				"preview_features_enabled": {
+					Type:     schema.TypeSet,
+					Optional: true,
+					Elem: &schema.Schema{
+						Type: schema.TypeString,
+					},
+				},
+			},
+		}))
 
 	for _, configure := range []func(provider *ujconfig.Provider){
 		// add custom config functions
@@ -129,6 +141,7 @@ func GetProvider() *ujconfig.Provider {
 		snowflaketask.Configure,
 		snowflakeuser.Configure,
 		snowflakeview.Configure,
+		snowflakefileformat.Configure,
 	} {
 		configure(pc)
 	}
