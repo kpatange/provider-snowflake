@@ -71,6 +71,42 @@ var providerSchema string
 //go:embed provider-metadata.yaml
 var providerMetadata string
 
+func addPreviewFeaturesToAllResources(pc *ujconfig.Provider) {
+	// Add to all resources; you can dynamically get these too if you want
+	resources := []string{
+		"snowflake_warehouse",
+		"snowflake_database",
+		"snowflake_file_format",
+		"snowflake_stage",
+		"snowflake_pipe",
+		"snowflake_table",
+	}
+
+	for _, rName := range resources {
+		pc.AddResourceConfigurator(rName, func(r *ujconfig.Resource) {
+			r.TerraformResource.Schema["preview_features_enabled"] = &schema.Schema{
+				Type:     schema.TypeSet,
+				Optional: true,
+				Elem: &schema.Schema{
+					Type: schema.TypeString,
+				},
+				Default: schema.NewSet(
+					schema.HashString,
+					[]interface{}{
+						"snowflake_database_datasource",
+						"snowflake_storage_integration_resource",
+						"snowflake_stage_resource",
+						"snowflake_pipe_resource",
+						"snowflake_table_resource",
+						"snowflake_file_format_resource",
+					},
+				),
+				Description: "Preview features enabled for this resource. Overrides provider defaults if set.",
+			}
+		})
+	}
+}
+
 // GetProvider returns provider configuration
 func GetProvider() *ujconfig.Provider {
 	pc := ujconfig.NewProvider([]byte(providerSchema), resourcePrefix, modulePath, []byte(providerMetadata),
@@ -145,7 +181,8 @@ func GetProvider() *ujconfig.Provider {
 	} {
 		configure(pc)
 	}
-
+	// Inject preview_features_enabled into all resources
+	addPreviewFeaturesToAllResources(pc)
 	pc.ConfigureResources()
 	return pc
 }

@@ -7,6 +7,8 @@ package clients
 import (
 	"context"
 	"encoding/json"
+	"os"
+	"strings"
 
 	"github.com/crossplane/crossplane-runtime/pkg/resource"
 	"github.com/pkg/errors"
@@ -38,10 +40,12 @@ const (
 	keyToken                = "token"
 	keyPrivateKey           = "private_key"
 	keyPrivateKeyPassphrase = "private_key_passphrase"
+
+	envPreviewFeatures = "SNOWFLAKE_PREVIEW_FEATURES_ENABLED"
 )
 
-// TerraformSetupBuilder builds Terraform a terraform.SetupFn function which
-// returns Terraform provider setup configuration
+// TerraformSetupBuilder builds a terraform.SetupFn function that returns
+// Terraform provider setup configuration
 func TerraformSetupBuilder(version, providerSource, providerVersion string) terraform.SetupFn {
 	return func(ctx context.Context, c client.Client, mg resource.Managed) (terraform.Setup, error) {
 		ps := terraform.Setup{
@@ -51,9 +55,50 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 				Version: providerVersion,
 			},
 		}
+
 		if err := populateProviderConfig(ctx, c, mg, &ps); err != nil {
 			return ps, err
 		}
+
+		// --- Add preview features automatically ---
+		// Default list of preview features recommended for Snowflake 2.8.0+
+		features := []string{
+			"snowflake_database_datasource",
+			"snowflake_storage_integration_resource",
+			"snowflake_stage_resource",
+			"snowflake_pipe_resource",
+			"snowflake_table_resource",
+			"snowflake_file_format_resource",
+		}
+
+		// Allow override or extension via environment variable
+		if val := os.Getenv(envPreviewFeatures); val != "" {
+			custom := strings.Split(val, ",")
+			for _, f := range custom {
+				trimmed := strings.TrimSpace(f)
+				if trimmed != "" {
+					features = append(features, trimmed)
+				}
+			}
+		}
+
+		// Deduplicate features to keep config clean
+		unique := map[string]bool{}
+		final := []string{}
+		for _, f := range features {
+			if !unique[f] {
+				unique[f] = true
+				final = append(final, f)
+			}
+		}
+
+		// Inject into provider configuration
+		if ps.Configuration == nil {
+			ps.Configuration = map[string]any{}
+		}
+		ps.Configuration["preview_features_enabled"] = final
+		// --- End preview feature setup ---
+
 		return ps, nil
 	}
 }

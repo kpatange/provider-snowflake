@@ -1,0 +1,70 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata:
+  name: snowflakepipelines.snowflake.crossplane.io
+spec:
+  group: snowflake.crossplane.io
+  names:
+    kind: SnowflakePipeline
+    plural: snowflakepipelines
+  claimNames:
+    kind: SnowflakePipelineClaim
+    plural: snowflakepipelineclaims
+  versions:
+  - name: v1alpha1
+    served: true
+    referenceable: true
+    schema:
+      openAPIV3Schema:
+        type: object
+        properties:
+          spec:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the database (will be converted to uppercase)
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: Name of the schema (defaults to "PUBLIC")
+                  managedAccess:
+                    type: boolean
+                    description: Whether to create a managed access schema
+                  dataRetentionTimeInDays:
+                    type: integer
+                    description: Data retention time in days
+                  comment:
+                    type: string
+                    description: Comment for the schema
+              fileFormat:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: Name of the file format (defaults to "my_file_format")
+                  type:
+                    type: string
+                    description: File format type (CSV, JSON, PARQUET, etc.)
+                    enum: [CSV, JSON, AVRO, ORC, PARQUET, XML]
+                  compression:
+                    type: string
+                    description: Compression type (AUTO, GZIP, BZ2, etc.)
+                  fieldDelimiter:
+                    type: string
+                    description: Field delimiter for CSV files
+                  recordDelimiter:
+                    type: string
+                    description: Record delimiter for CSV files
+                  skipHeader:
+                    type: integer
+                    description: Number of header rows to skip
+                  nullIf:
+                    type: array
+                    items:
+                      type: string
+                    description: List of strings to treat as NULL
+            required:
+              - name

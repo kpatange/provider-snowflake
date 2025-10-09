@@ -172,6 +172,11 @@ spec:
                       8 encoding errors produce error conditions.
                       Boolean that specifies whether UTF-8 encoding errors produce error conditions.
                     type: boolean
+                  name:
+                    description: |-
+                      (String) Specifies the identifier for the file format; must be unique for the database and schema in which the file format is created.
+                      Specifies the identifier for the file format; must be unique for the database and schema in which the file format is created.
+                    type: string
                   nullIf:
                     description: |-
                       (List of String) String used to convert to and from SQL NULL.
@@ -189,6 +194,13 @@ spec:
                       (Boolean) Boolean that specifies whether the XML parser preserves leading and trailing spaces in element content.
                       Boolean that specifies whether the XML parser preserves leading and trailing spaces in element content.
                     type: boolean
+                  previewFeaturesEnabled:
+                    description: Preview features enabled for this resource. Overrides
+                      provider defaults if set.
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
                   recordDelimiter:
                     description: |-
                       (String) Specifies one or more singlebyte or multibyte characters that separate records in an input file (data loading) or unloaded file (data unloading).
@@ -363,6 +375,11 @@ spec:
                       8 encoding errors produce error conditions.
                       Boolean that specifies whether UTF-8 encoding errors produce error conditions.
                     type: boolean
+                  name:
+                    description: |-
+                      (String) Specifies the identifier for the file format; must be unique for the database and schema in which the file format is created.
+                      Specifies the identifier for the file format; must be unique for the database and schema in which the file format is created.
+                    type: string
                   nullIf:
                     description: |-
                       (List of String) String used to convert to and from SQL NULL.
@@ -380,6 +397,13 @@ spec:
                       (Boolean) Boolean that specifies whether the XML parser preserves leading and trailing spaces in element content.
                       Boolean that specifies whether the XML parser preserves leading and trailing spaces in element content.
                     type: boolean
+                  previewFeaturesEnabled:
+                    description: Preview features enabled for this resource. Overrides
+                      provider defaults if set.
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
                   recordDelimiter:
                     description: |-
                       (String) Specifies one or more singlebyte or multibyte characters that separate records in an input file (data loading) or unloaded file (data unloading).
@@ -617,6 +641,10 @@ spec:
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.formatType)
                 || (has(self.initProvider) && has(self.initProvider.formatType))'
+            - message: spec.forProvider.name is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.name)
+                || (has(self.initProvider) && has(self.initProvider.name))'
             - message: spec.forProvider.schema is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.schema)
@@ -734,6 +762,11 @@ spec:
                       8 encoding errors produce error conditions.
                       Boolean that specifies whether UTF-8 encoding errors produce error conditions.
                     type: boolean
+                  name:
+                    description: |-
+                      (String) Specifies the identifier for the file format; must be unique for the database and schema in which the file format is created.
+                      Specifies the identifier for the file format; must be unique for the database and schema in which the file format is created.
+                    type: string
                   nullIf:
                     description: |-
                       (List of String) String used to convert to and from SQL NULL.
@@ -751,6 +784,13 @@ spec:
                       (Boolean) Boolean that specifies whether the XML parser preserves leading and trailing spaces in element content.
                       Boolean that specifies whether the XML parser preserves leading and trailing spaces in element content.
                     type: boolean
+                  previewFeaturesEnabled:
+                    description: Preview features enabled for this resource. Overrides
+                      provider defaults if set.
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
                   recordDelimiter:
                     description: |-
                       (String) Specifies one or more singlebyte or multibyte characters that separate records in an input file (data loading) or unloaded file (data unloading).

@@ -558,6 +558,17 @@ func (in *WarehouseInitParameters) DeepCopyInto(out *WarehouseInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.PreviewFeaturesEnabled != nil {
+		in, out := &in.PreviewFeaturesEnabled, &out.PreviewFeaturesEnabled
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
+	}
 	if in.QueryAccelerationMaxScaleFactor != nil {
 		in, out := &in.QueryAccelerationMaxScaleFactor, &out.QueryAccelerationMaxScaleFactor
 		*out = new(float64)
@@ -712,6 +723,17 @@ func (in *WarehouseObservation) DeepCopyInto(out *WarehouseObservation) {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
+	if in.PreviewFeaturesEnabled != nil {
+		in, out := &in.PreviewFeaturesEnabled, &out.PreviewFeaturesEnabled
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
+	}
 	if in.QueryAccelerationMaxScaleFactor != nil {
 		in, out := &in.QueryAccelerationMaxScaleFactor, &out.QueryAccelerationMaxScaleFactor
 		*out = new(float64)
@@ -823,6 +845,17 @@ func (in *WarehouseParameters) DeepCopyInto(out *WarehouseParameters) {
 		in, out := &in.Name, &out.Name
 		*out = new(string)
 		**out = **in
+	}
+	if in.PreviewFeaturesEnabled != nil {
+		in, out := &in.PreviewFeaturesEnabled, &out.PreviewFeaturesEnabled
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
 	}
 	if in.QueryAccelerationMaxScaleFactor != nil {
 		in, out := &in.QueryAccelerationMaxScaleFactor, &out.QueryAccelerationMaxScaleFactor

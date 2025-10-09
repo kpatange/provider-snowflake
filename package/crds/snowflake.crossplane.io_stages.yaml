@@ -126,6 +126,13 @@ spec:
                       (String) Specifies the file format for the stage. Specifying the default Snowflake value (e.g. TYPE = CSV) will currently result in a permadiff (check #2679). For now, omit the default values; it will be fixed in the upcoming provider versions. Examples of usage: 1. with hardcoding value: file_format="FORMAT_NAME = DB.SCHEMA.FORMATNAME" 2. from dynamic value: file_format = "FORMAT_NAME = ${snowflake_file_format.myfileformat.fully_qualified_name}" 3. from expression: file_format = format("FORMAT_NAME =%s.%s.MYFILEFORMAT", var.db_name, each.value.schema_name). Reference: #265
                       Specifies the file format for the stage. Specifying the default Snowflake value (e.g. TYPE = CSV) will currently result in a permadiff (check [#2679](https://github. For now, omit the default values; it will be fixed in the upcoming provider versions. Examples of usage: <b>1. with hardcoding value:</b> `file_format="FORMAT_NAME = DB.SCHEMA.FORMATNAME"` <b>2. from dynamic value:</b> `file_format = "FORMAT_NAME = ${snowflake_file_format.myfileformat.fully_qualified_name}"` <b>3. from expression:</b> `file_format = format("FORMAT_NAME =%s.%s.MYFILEFORMAT", var.db_name, each.value.schema_name)`. Reference: [#265](https://github
                     type: string
+                  previewFeaturesEnabled:
+                    description: Preview features enabled for this resource. Overrides
+                      provider defaults if set.
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
                   schema:
                     description: |-
                       (String) The schema in which to create the stage.
@@ -242,6 +249,13 @@ spec:
                       (String) Specifies the file format for the stage. Specifying the default Snowflake value (e.g. TYPE = CSV) will currently result in a permadiff (check #2679). For now, omit the default values; it will be fixed in the upcoming provider versions. Examples of usage: 1. with hardcoding value: file_format="FORMAT_NAME = DB.SCHEMA.FORMATNAME" 2. from dynamic value: file_format = "FORMAT_NAME = ${snowflake_file_format.myfileformat.fully_qualified_name}" 3. from expression: file_format = format("FORMAT_NAME =%s.%s.MYFILEFORMAT", var.db_name, each.value.schema_name). Reference: #265
                       Specifies the file format for the stage. Specifying the default Snowflake value (e.g. TYPE = CSV) will currently result in a permadiff (check [#2679](https://github. For now, omit the default values; it will be fixed in the upcoming provider versions. Examples of usage: <b>1. with hardcoding value:</b> `file_format="FORMAT_NAME = DB.SCHEMA.FORMATNAME"` <b>2. from dynamic value:</b> `file_format = "FORMAT_NAME = ${snowflake_file_format.myfileformat.fully_qualified_name}"` <b>3. from expression:</b> `file_format = format("FORMAT_NAME =%s.%s.MYFILEFORMAT", var.db_name, each.value.schema_name)`. Reference: [#265](https://github
                     type: string
+                  previewFeaturesEnabled:
+                    description: Preview features enabled for this resource. Overrides
+                      provider defaults if set.
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
                   schema:
                     description: |-
                       (String) The schema in which to create the stage.
@@ -515,6 +529,13 @@ spec:
                   id:
                     description: (String) The ID of this resource.
                     type: string
+                  previewFeaturesEnabled:
+                    description: Preview features enabled for this resource. Overrides
+                      provider defaults if set.
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
                   schema:
                     description: |-
                       (String) The schema in which to create the stage.

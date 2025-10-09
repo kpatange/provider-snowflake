@@ -95,6 +95,10 @@ type FormatInitParameters struct {
 	// Boolean that specifies whether UTF-8 encoding errors produce error conditions.
 	IgnoreUTF8Errors *bool `json:"ignoreUtf8Errors,omitempty" tf:"ignore_utf8_errors,omitempty"`
 
+	// (String) Specifies the identifier for the file format; must be unique for the database and schema in which the file format is created.
+	// Specifies the identifier for the file format; must be unique for the database and schema in which the file format is created.
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
 	// (List of String) String used to convert to and from SQL NULL.
 	// String used to convert to and from SQL NULL.
 	NullIf []*string `json:"nullIf,omitempty" tf:"null_if,omitempty"`
@@ -106,6 +110,10 @@ type FormatInitParameters struct {
 	// (Boolean) Boolean that specifies whether the XML parser preserves leading and trailing spaces in element content.
 	// Boolean that specifies whether the XML parser preserves leading and trailing spaces in element content.
 	PreserveSpace *bool `json:"preserveSpace,omitempty" tf:"preserve_space,omitempty"`
+
+	// Preview features enabled for this resource. Overrides provider defaults if set.
+	// +listType=set
+	PreviewFeaturesEnabled []*string `json:"previewFeaturesEnabled,omitempty" tf:"preview_features_enabled,omitempty"`
 
 	// (String) Specifies one or more singlebyte or multibyte characters that separate records in an input file (data loading) or unloaded file (data unloading).
 	// Specifies one or more singlebyte or multibyte characters that separate records in an input file (data loading) or unloaded file (data unloading).
@@ -245,6 +253,10 @@ type FormatObservation struct {
 	// Boolean that specifies whether UTF-8 encoding errors produce error conditions.
 	IgnoreUTF8Errors *bool `json:"ignoreUtf8Errors,omitempty" tf:"ignore_utf8_errors,omitempty"`
 
+	// (String) Specifies the identifier for the file format; must be unique for the database and schema in which the file format is created.
+	// Specifies the identifier for the file format; must be unique for the database and schema in which the file format is created.
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
 	// (List of String) String used to convert to and from SQL NULL.
 	// String used to convert to and from SQL NULL.
 	NullIf []*string `json:"nullIf,omitempty" tf:"null_if,omitempty"`
@@ -256,6 +268,10 @@ type FormatObservation struct {
 	// (Boolean) Boolean that specifies whether the XML parser preserves leading and trailing spaces in element content.
 	// Boolean that specifies whether the XML parser preserves leading and trailing spaces in element content.
 	PreserveSpace *bool `json:"preserveSpace,omitempty" tf:"preserve_space,omitempty"`
+
+	// Preview features enabled for this resource. Overrides provider defaults if set.
+	// +listType=set
+	PreviewFeaturesEnabled []*string `json:"previewFeaturesEnabled,omitempty" tf:"preview_features_enabled,omitempty"`
 
 	// (String) Specifies one or more singlebyte or multibyte characters that separate records in an input file (data loading) or unloaded file (data unloading).
 	// Specifies one or more singlebyte or multibyte characters that separate records in an input file (data loading) or unloaded file (data unloading).
@@ -408,6 +424,11 @@ type FormatParameters struct {
 	// +kubebuilder:validation:Optional
 	IgnoreUTF8Errors *bool `json:"ignoreUtf8Errors,omitempty" tf:"ignore_utf8_errors,omitempty"`
 
+	// (String) Specifies the identifier for the file format; must be unique for the database and schema in which the file format is created.
+	// Specifies the identifier for the file format; must be unique for the database and schema in which the file format is created.
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
 	// (List of String) String used to convert to and from SQL NULL.
 	// String used to convert to and from SQL NULL.
 	// +kubebuilder:validation:Optional
@@ -422,6 +443,11 @@ type FormatParameters struct {
 	// Boolean that specifies whether the XML parser preserves leading and trailing spaces in element content.
 	// +kubebuilder:validation:Optional
 	PreserveSpace *bool `json:"preserveSpace,omitempty" tf:"preserve_space,omitempty"`
+
+	// Preview features enabled for this resource. Overrides provider defaults if set.
+	// +kubebuilder:validation:Optional
+	// +listType=set
+	PreviewFeaturesEnabled []*string `json:"previewFeaturesEnabled,omitempty" tf:"preview_features_enabled,omitempty"`
 
 	// (String) Specifies one or more singlebyte or multibyte characters that separate records in an input file (data loading) or unloaded file (data unloading).
 	// Specifies one or more singlebyte or multibyte characters that separate records in an input file (data loading) or unloaded file (data unloading).
@@ -522,6 +548,7 @@ type Format struct {
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.database) || (has(self.initProvider) && has(self.initProvider.database))",message="spec.forProvider.database is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.formatType) || (has(self.initProvider) && has(self.initProvider.formatType))",message="spec.forProvider.formatType is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.schema) || (has(self.initProvider) && has(self.initProvider.schema))",message="spec.forProvider.schema is a required parameter"
 	Spec   FormatSpec   `json:"spec"`
 	Status FormatStatus `json:"status,omitempty"`

@@ -43,6 +43,10 @@ type PipeInitParameters struct {
 	// Specifies an integration for the pipe.
 	Integration *string `json:"integration,omitempty" tf:"integration,omitempty"`
 
+	// Preview features enabled for this resource. Overrides provider defaults if set.
+	// +listType=set
+	PreviewFeaturesEnabled []*string `json:"previewFeaturesEnabled,omitempty" tf:"preview_features_enabled,omitempty"`
+
 	// (String) The schema in which to create the pipe.
 	// The schema in which to create the pipe.
 	Schema *string `json:"schema,omitempty" tf:"schema,omitempty"`
@@ -93,6 +97,10 @@ type PipeObservation struct {
 	// Name of the role that owns the pipe.
 	Owner *string `json:"owner,omitempty" tf:"owner,omitempty"`
 
+	// Preview features enabled for this resource. Overrides provider defaults if set.
+	// +listType=set
+	PreviewFeaturesEnabled []*string `json:"previewFeaturesEnabled,omitempty" tf:"preview_features_enabled,omitempty"`
+
 	// (String) The schema in which to create the pipe.
 	// The schema in which to create the pipe.
 	Schema *string `json:"schema,omitempty" tf:"schema,omitempty"`
@@ -134,6 +142,11 @@ type PipeParameters struct {
 	// Specifies an integration for the pipe.
 	// +kubebuilder:validation:Optional
 	Integration *string `json:"integration,omitempty" tf:"integration,omitempty"`
+
+	// Preview features enabled for this resource. Overrides provider defaults if set.
+	// +kubebuilder:validation:Optional
+	// +listType=set
+	PreviewFeaturesEnabled []*string `json:"previewFeaturesEnabled,omitempty" tf:"preview_features_enabled,omitempty"`
 
 	// (String) The schema in which to create the pipe.
 	// The schema in which to create the pipe.

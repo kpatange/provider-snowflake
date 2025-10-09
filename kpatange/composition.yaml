@@ -1,0 +1,29 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: snowflake-pipeline
+spec:
+  compositeTypeRef:
+    apiVersion: snowflake.crossplane.io/v1alpha1
+    kind: SnowflakePipeline
+  resources:
+    - name: execute-database
+      base:
+        apiVersion: snowflakeexecute.crossplane.io/v1alpha1
+        kind: Execute
+        spec:
+          forProvider:
+            execute: CREATE DATABASE {{ .spec.name }};
+            revert: DROP DATABASE {{ .spec.name }};
+          providerConfigRef:
+            name: default
+    - name: execute-file-format
+      base:
+        apiVersion: snowflakeexecute.crossplane.io/v1alpha1
+        kind: Execute
+        spec:
+          forProvider:
+            execute: CREATE FILE FORMAT {{ .spec.name }} TYPE = 'CSV' FIELD_DELIMITER = ',' SKIP_HEADER = 1;
+            revert: DROP FILE FORMAT {{ .spec.name }};
+          providerConfigRef:
+            name: default

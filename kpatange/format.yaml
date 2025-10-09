@@ -4,6 +4,7 @@ metadata:
   name: example-file-format
 spec:
   forProvider:
+    name: ff_file_format
     database: CROSS_DB
     formatType: CSV
     schema: UPJET

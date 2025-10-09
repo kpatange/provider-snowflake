@@ -1,0 +1,7 @@
+apiVersion: snowflake.crossplane.io/v1alpha1
+kind: SnowflakePipelineClaim
+metadata:
+  name: mario
+  namespace: crossplane-system
+spec:
+  name: mario

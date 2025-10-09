@@ -142,6 +142,11 @@ func (in *FormatInitParameters) DeepCopyInto(out *FormatInitParameters) {
 		*out = new(bool)
 		**out = **in
 	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
 	if in.NullIf != nil {
 		in, out := &in.NullIf, &out.NullIf
 		*out = make([]*string, len(*in))
@@ -162,6 +167,17 @@ func (in *FormatInitParameters) DeepCopyInto(out *FormatInitParameters) {
 		in, out := &in.PreserveSpace, &out.PreserveSpace
 		*out = new(bool)
 		**out = **in
+	}
+	if in.PreviewFeaturesEnabled != nil {
+		in, out := &in.PreviewFeaturesEnabled, &out.PreviewFeaturesEnabled
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
 	}
 	if in.RecordDelimiter != nil {
 		in, out := &in.RecordDelimiter, &out.RecordDelimiter
@@ -380,6 +396,11 @@ func (in *FormatObservation) DeepCopyInto(out *FormatObservation) {
 		*out = new(bool)
 		**out = **in
 	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
 	if in.NullIf != nil {
 		in, out := &in.NullIf, &out.NullIf
 		*out = make([]*string, len(*in))
@@ -400,6 +421,17 @@ func (in *FormatObservation) DeepCopyInto(out *FormatObservation) {
 		in, out := &in.PreserveSpace, &out.PreserveSpace
 		*out = new(bool)
 		**out = **in
+	}
+	if in.PreviewFeaturesEnabled != nil {
+		in, out := &in.PreviewFeaturesEnabled, &out.PreviewFeaturesEnabled
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
 	}
 	if in.RecordDelimiter != nil {
 		in, out := &in.RecordDelimiter, &out.RecordDelimiter
@@ -576,6 +608,11 @@ func (in *FormatParameters) DeepCopyInto(out *FormatParameters) {
 		*out = new(bool)
 		**out = **in
 	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
 	if in.NullIf != nil {
 		in, out := &in.NullIf, &out.NullIf
 		*out = make([]*string, len(*in))
@@ -596,6 +633,17 @@ func (in *FormatParameters) DeepCopyInto(out *FormatParameters) {
 		in, out := &in.PreserveSpace, &out.PreserveSpace
 		*out = new(bool)
 		**out = **in
+	}
+	if in.PreviewFeaturesEnabled != nil {
+		in, out := &in.PreviewFeaturesEnabled, &out.PreviewFeaturesEnabled
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
 	}
 	if in.RecordDelimiter != nil {
 		in, out := &in.RecordDelimiter, &out.RecordDelimiter

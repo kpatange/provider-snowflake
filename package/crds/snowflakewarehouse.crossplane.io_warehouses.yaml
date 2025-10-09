@@ -124,6 +124,13 @@ spec:
                       (String) Identifier for the virtual warehouse; must be unique for your account. Due to technical limitations (read more here), avoid using the following characters: |, ., ".
                       Identifier for the virtual warehouse; must be unique for your account. Due to technical limitations (read more [here](../guides/identifiers_rework_design_decisions#known-limitations-and-identifier-recommendations)), avoid using the following characters: `|`, `.`, `"`.
                     type: string
+                  previewFeaturesEnabled:
+                    description: Preview features enabled for this resource. Overrides
+                      provider defaults if set.
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
                   queryAccelerationMaxScaleFactor:
                     description: |-
                       uses special value that cannot be set in the configuration manually (-1)) Specifies the maximum scale factor for leasing compute resources for query acceleration. The scale factor is used as a multiplier based on warehouse size.
@@ -228,6 +235,13 @@ spec:
                       (String) Identifier for the virtual warehouse; must be unique for your account. Due to technical limitations (read more here), avoid using the following characters: |, ., ".
                       Identifier for the virtual warehouse; must be unique for your account. Due to technical limitations (read more [here](../guides/identifiers_rework_design_decisions#known-limitations-and-identifier-recommendations)), avoid using the following characters: `|`, `.`, `"`.
                     type: string
+                  previewFeaturesEnabled:
+                    description: Preview features enabled for this resource. Overrides
+                      provider defaults if set.
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
                   queryAccelerationMaxScaleFactor:
                     description: |-
                       uses special value that cannot be set in the configuration manually (-1)) Specifies the maximum scale factor for leasing compute resources for query acceleration. The scale factor is used as a multiplier based on warehouse size.
@@ -582,6 +596,13 @@ spec:
                           type: array
                       type: object
                     type: array
+                  previewFeaturesEnabled:
+                    description: Preview features enabled for this resource. Overrides
+                      provider defaults if set.
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
                   queryAccelerationMaxScaleFactor:
                     description: |-
                       uses special value that cannot be set in the configuration manually (-1)) Specifies the maximum scale factor for leasing compute resources for query acceleration. The scale factor is used as a multiplier based on warehouse size.

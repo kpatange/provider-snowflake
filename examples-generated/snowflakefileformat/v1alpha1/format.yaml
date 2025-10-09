@@ -5,9 +5,10 @@ metadata:
     meta.upbound.io/example-id: snowflakefileformat/v1alpha1/format
   labels:
     testing.upbound.io/example-name: example_file_format
-  name: example-file-format
+  name: example-file-format2
 spec:
   forProvider:
-    database: EXAMPLE_DB
+    database: MBB
     formatType: CSV
-    schema: EXAMPLE_SCHEMA
+    name: EXAMPLE_FILE_FORMAT
+    schema: PUBLIC

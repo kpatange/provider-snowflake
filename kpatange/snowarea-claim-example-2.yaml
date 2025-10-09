@@ -1,0 +1,7 @@
+apiVersion: snowflake.crossplane.io/v1alpha1
+kind: SnowflakePipelineClaim
+metadata:
+  name: cooldude2
+  namespace: crossplane-system
+spec:
+  name: COOLDUDE

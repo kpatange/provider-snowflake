@@ -97,6 +97,17 @@ func (in *DatabaseInitParameters) DeepCopyInto(out *DatabaseInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.PreviewFeaturesEnabled != nil {
+		in, out := &in.PreviewFeaturesEnabled, &out.PreviewFeaturesEnabled
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
+	}
 	if in.QuotedIdentifiersIgnoreCase != nil {
 		in, out := &in.QuotedIdentifiersIgnoreCase, &out.QuotedIdentifiersIgnoreCase
 		*out = new(bool)
@@ -261,6 +272,17 @@ func (in *DatabaseObservation) DeepCopyInto(out *DatabaseObservation) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.PreviewFeaturesEnabled != nil {
+		in, out := &in.PreviewFeaturesEnabled, &out.PreviewFeaturesEnabled
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
+	}
 	if in.QuotedIdentifiersIgnoreCase != nil {
 		in, out := &in.QuotedIdentifiersIgnoreCase, &out.QuotedIdentifiersIgnoreCase
 		*out = new(bool)
@@ -382,6 +404,17 @@ func (in *DatabaseParameters) DeepCopyInto(out *DatabaseParameters) {
 		in, out := &in.Name, &out.Name
 		*out = new(string)
 		**out = **in
+	}
+	if in.PreviewFeaturesEnabled != nil {
+		in, out := &in.PreviewFeaturesEnabled, &out.PreviewFeaturesEnabled
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
 	}
 	if in.QuotedIdentifiersIgnoreCase != nil {
 		in, out := &in.QuotedIdentifiersIgnoreCase, &out.QuotedIdentifiersIgnoreCase

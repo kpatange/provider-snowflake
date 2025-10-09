@@ -1,0 +1,12 @@
+apiVersion: snowflakeexecute.crossplane.io/v1alpha1
+kind: Execute
+metadata:
+  annotations:
+    meta.upbound.io/example-id: snowflakeexecute/v1alpha1/execute
+  labels:
+    testing.upbound.io/example-name: superdb
+  name: superdb
+spec:
+  forProvider:
+    execute: CREATE DATABASE SUPERDB
+    revert: DROP DATABASE SUPERDB

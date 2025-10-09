@@ -5,8 +5,7 @@ metadata:
     meta.upbound.io/example-id: snowflakedatabase/v1alpha1/database
   labels:
     testing.upbound.io/example-name: primary
-  name: primary1
+  name: primary2
 spec:
   forProvider:
-    name: maxi2
-
+    name: smartfacts_db2

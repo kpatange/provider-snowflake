@@ -241,6 +241,10 @@ type WarehouseInitParameters struct {
 	// Identifier for the virtual warehouse; must be unique for your account. Due to technical limitations (read more [here](../guides/identifiers_rework_design_decisions#known-limitations-and-identifier-recommendations)), avoid using the following characters: `|`, `.`, `"`.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Preview features enabled for this resource. Overrides provider defaults if set.
+	// +listType=set
+	PreviewFeaturesEnabled []*string `json:"previewFeaturesEnabled,omitempty" tf:"preview_features_enabled,omitempty"`
+
 	// uses special value that cannot be set in the configuration manually (-1)) Specifies the maximum scale factor for leasing compute resources for query acceleration. The scale factor is used as a multiplier based on warehouse size.
 	// (Default: fallback to Snowflake default - uses special value that cannot be set in the configuration manually (`-1`)) Specifies the maximum scale factor for leasing compute resources for query acceleration. The scale factor is used as a multiplier based on warehouse size.
 	QueryAccelerationMaxScaleFactor *float64 `json:"queryAccelerationMaxScaleFactor,omitempty" tf:"query_acceleration_max_scale_factor,omitempty"`
@@ -326,6 +330,10 @@ type WarehouseObservation struct {
 	// (List of Object) Outputs the result of SHOW PARAMETERS IN WAREHOUSE for the given warehouse. (see below for nested schema)
 	// Outputs the result of `SHOW PARAMETERS IN WAREHOUSE` for the given warehouse.
 	Parameters []ParametersObservation `json:"parameters,omitempty" tf:"parameters,omitempty"`
+
+	// Preview features enabled for this resource. Overrides provider defaults if set.
+	// +listType=set
+	PreviewFeaturesEnabled []*string `json:"previewFeaturesEnabled,omitempty" tf:"preview_features_enabled,omitempty"`
 
 	// uses special value that cannot be set in the configuration manually (-1)) Specifies the maximum scale factor for leasing compute resources for query acceleration. The scale factor is used as a multiplier based on warehouse size.
 	// (Default: fallback to Snowflake default - uses special value that cannot be set in the configuration manually (`-1`)) Specifies the maximum scale factor for leasing compute resources for query acceleration. The scale factor is used as a multiplier based on warehouse size.
@@ -415,6 +423,11 @@ type WarehouseParameters struct {
 	// Identifier for the virtual warehouse; must be unique for your account. Due to technical limitations (read more [here](../guides/identifiers_rework_design_decisions#known-limitations-and-identifier-recommendations)), avoid using the following characters: `|`, `.`, `"`.
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// Preview features enabled for this resource. Overrides provider defaults if set.
+	// +kubebuilder:validation:Optional
+	// +listType=set
+	PreviewFeaturesEnabled []*string `json:"previewFeaturesEnabled,omitempty" tf:"preview_features_enabled,omitempty"`
 
 	// uses special value that cannot be set in the configuration manually (-1)) Specifies the maximum scale factor for leasing compute resources for query acceleration. The scale factor is used as a multiplier based on warehouse size.
 	// (Default: fallback to Snowflake default - uses special value that cannot be set in the configuration manually (`-1`)) Specifies the maximum scale factor for leasing compute resources for query acceleration. The scale factor is used as a multiplier based on warehouse size.

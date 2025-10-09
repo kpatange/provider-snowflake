@@ -1,0 +1,101 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: snowflake-pipeline
+  labels:
+    provider: snowflake
+spec:
+  compositeTypeRef:
+    apiVersion: snowflake.crossplane.io/v1alpha1
+    kind: SnowflakePipeline
+  mode: Pipeline
+  pipeline:
+    - step: go-template
+      functionRef:
+        name: go-templating
+      input:
+        apiVersion: gotemplating.fn.crossplane.io/v1beta1
+        kind: GoTemplate
+        source: Inline
+        inline:
+          template: |
+            {{- $spec := $.observed.composite.resource.spec }}
+            {{- $metadata := $.observed.composite.resource.metadata }}
+            {{- $dbName := $spec.name | upper }}
+            {{- $schemaName := $spec.schema.name | default "PUBLIC" | upper }}
+            {{- $fileFormatName := $spec.fileFormat.name | default "MY_FILE_FORMAT" | upper }}
+            ---
+            apiVersion: snowflakeexecute.crossplane.io/v1alpha1
+            kind: Execute
+            metadata:
+              name: {{ $metadata.name }}-database
+              annotations:
+                meta.upbound.io/example-id: snowflakeexecute/v1alpha1/execute
+                gotemplating.fn.crossplane.io/composition-resource-name: {{ $metadata.name }}-database
+            spec:
+              forProvider:
+                execute: |-
+                  CREATE DATABASE {{ printf "%s" $dbName }}
+                  {{- if $spec.database.dataRetentionTimeInDays }}
+                  DATA_RETENTION_TIME_IN_DAYS = {{ $spec.database.dataRetentionTimeInDays }}
+                  {{- end }}
+                  {{- if $spec.database.comment }}
+                  COMMENT = '{{ $spec.database.comment }}'
+                  {{- end }};
+                revert: DROP DATABASE {{ printf "%s" $dbName }};
+            ---
+            apiVersion: snowflakeexecute.crossplane.io/v1alpha1
+            kind: Execute
+            metadata:
+              name: {{ $metadata.name }}-schema
+              annotations:
+                meta.upbound.io/example-id: snowflakeexecute/v1alpha1/execute
+                gotemplating.fn.crossplane.io/composition-resource-name: {{ $metadata.name }}-schema
+            spec:
+              forProvider:
+                execute: |-
+                  CREATE SCHEMA {{ printf "%s.%s" $dbName $schemaName  }}
+                  {{- if $spec.schema.managedAccess }}
+                  WITH MANAGED ACCESS
+                  {{- end }}
+                  {{- if $spec.schema.dataRetentionTimeInDays }}
+                  DATA_RETENTION_TIME_IN_DAYS = {{ $spec.schema.dataRetentionTimeInDays }}
+                  {{- end }}
+                  {{- if $spec.schema.comment }}
+                  COMMENT = '{{ $spec.schema.comment }}'
+                  {{- end }};
+                revert: |-
+                  DROP SCHEMA {{ printf "%s.%s" $dbName $schemaName }};
+            ---
+            apiVersion: snowflakeexecute.crossplane.io/v1alpha1
+            kind: Execute
+            metadata:
+              name: {{ $metadata.name }}-file-format
+              annotations:
+                meta.upbound.io/example-id: snowflakeexecute/v1alpha1/execute
+                gotemplating.fn.crossplane.io/composition-resource-name: {{ $metadata.name }}-file-format
+            spec:
+              forProvider:
+                execute: |-
+                  CREATE FILE FORMAT {{ printf "%s.%s.%s" $dbName $schemaName $fileFormatName }}
+                  TYPE = '{{ $spec.fileFormat.type | default "CSV" }}'
+                  {{- if $spec.fileFormat.compression }}
+                  COMPRESSION = '{{ $spec.fileFormat.compression }}'
+                  {{- end }}
+                  {{- if $spec.fileFormat.fieldDelimiter }}
+                  FIELD_DELIMITER = '{{ $spec.fileFormat.fieldDelimiter }}'
+                  {{- end }}
+                  {{- if $spec.fileFormat.recordDelimiter }}
+                  RECORD_DELIMITER = '{{ $spec.fileFormat.recordDelimiter }}'
+                  {{- end }}
+                  {{- if $spec.fileFormat.skipHeader }}
+                  SKIP_HEADER = {{ $spec.fileFormat.skipHeader }}
+                  {{- end }}
+                  {{- if $spec.fileFormat.nullIf }}
+                  NULL_IF = ('{{ $spec.fileFormat.nullIf | join "','" }}')
+                  {{- end }};
+                revert: |-
+                  DROP FILE FORMAT {{ printf "%s.%s.%s" $dbName $schemaName $fileFormatName}};
+    - step: automatically-detect-ready-composed-resources
+      functionRef:
+        name: auto-ready

@@ -47,6 +47,10 @@ type StageInitParameters struct {
 	// Specifies the file format for the stage. Specifying the default Snowflake value (e.g. TYPE = CSV) will currently result in a permadiff (check [#2679](https://github. For now, omit the default values; it will be fixed in the upcoming provider versions. Examples of usage: <b>1. with hardcoding value:</b> `file_format="FORMAT_NAME = DB.SCHEMA.FORMATNAME"` <b>2. from dynamic value:</b> `file_format = "FORMAT_NAME = ${snowflake_file_format.myfileformat.fully_qualified_name}"` <b>3. from expression:</b> `file_format = format("FORMAT_NAME =%s.%s.MYFILEFORMAT", var.db_name, each.value.schema_name)`. Reference: [#265](https://github
 	FileFormat *string `json:"fileFormat,omitempty" tf:"file_format,omitempty"`
 
+	// Preview features enabled for this resource. Overrides provider defaults if set.
+	// +listType=set
+	PreviewFeaturesEnabled []*string `json:"previewFeaturesEnabled,omitempty" tf:"preview_features_enabled,omitempty"`
+
 	// (String) The schema in which to create the stage.
 	// The schema in which to create the stage.
 	Schema *string `json:"schema,omitempty" tf:"schema,omitempty"`
@@ -104,6 +108,10 @@ type StageObservation struct {
 
 	// (String) The ID of this resource.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// Preview features enabled for this resource. Overrides provider defaults if set.
+	// +listType=set
+	PreviewFeaturesEnabled []*string `json:"previewFeaturesEnabled,omitempty" tf:"preview_features_enabled,omitempty"`
 
 	// (String) The schema in which to create the stage.
 	// The schema in which to create the stage.
@@ -167,6 +175,11 @@ type StageParameters struct {
 	// Specifies the file format for the stage. Specifying the default Snowflake value (e.g. TYPE = CSV) will currently result in a permadiff (check [#2679](https://github. For now, omit the default values; it will be fixed in the upcoming provider versions. Examples of usage: <b>1. with hardcoding value:</b> `file_format="FORMAT_NAME = DB.SCHEMA.FORMATNAME"` <b>2. from dynamic value:</b> `file_format = "FORMAT_NAME = ${snowflake_file_format.myfileformat.fully_qualified_name}"` <b>3. from expression:</b> `file_format = format("FORMAT_NAME =%s.%s.MYFILEFORMAT", var.db_name, each.value.schema_name)`. Reference: [#265](https://github
 	// +kubebuilder:validation:Optional
 	FileFormat *string `json:"fileFormat,omitempty" tf:"file_format,omitempty"`
+
+	// Preview features enabled for this resource. Overrides provider defaults if set.
+	// +kubebuilder:validation:Optional
+	// +listType=set
+	PreviewFeaturesEnabled []*string `json:"previewFeaturesEnabled,omitempty" tf:"preview_features_enabled,omitempty"`
 
 	// (String) The schema in which to create the stage.
 	// The schema in which to create the stage.

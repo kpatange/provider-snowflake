@@ -1,0 +1,3 @@
+kubectl create secret generic snowflake-creds \
+  --from-literal=password='test123' \
+  -n crossplane-system

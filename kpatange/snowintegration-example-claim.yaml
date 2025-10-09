@@ -1,0 +1,15 @@
+apiVersion: data.volvocars.com/v1alpha1
+kind: SfIntegration
+metadata:
+  name: azure-blob-storage-int-example1
+  labels:
+    provider: snowflake
+spec:
+  name: azure_blob_storage_int
+  storageProvider: AZURE
+  azureTenantId: "72f988bf-86f1-41af-91ab-2d7cd011db47"
+  allowedLocations:
+    - "azure://mycontainer.blob.core.windows.net/c1"
+    - "azure://mylogs.blob.core.windows.net/c2"
+  comment: "Storage integration for ingesting raw telemetry data"
+

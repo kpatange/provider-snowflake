@@ -59,6 +59,10 @@ type DatabaseInitParameters struct {
 	// Specifies the identifier for the database; must be unique for your account. As a best practice for [Database Replication and Failover](https://docs.snowflake.com/en/user-guide/db-replication-intro), it is recommended to give each secondary database the same name as its primary database. This practice supports referencing fully-qualified objects (i.e. '<db>.<schema>.<object>') by other objects in the same database, such as querying a fully-qualified table name in a view. If a secondary database has a different name from the primary database, then these object references would break in the secondary database. Due to technical limitations (read more [here](../guides/identifiers_rework_design_decisions#known-limitations-and-identifier-recommendations)), avoid using the following characters: `|`, `.`, `"`.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Preview features enabled for this resource. Overrides provider defaults if set.
+	// +listType=set
+	PreviewFeaturesEnabled []*string `json:"previewFeaturesEnabled,omitempty" tf:"preview_features_enabled,omitempty"`
+
 	// (Boolean) If true, the case of quoted identifiers is ignored. For more information, see QUOTED_IDENTIFIERS_IGNORE_CASE.
 	// If true, the case of quoted identifiers is ignored. For more information, see [QUOTED_IDENTIFIERS_IGNORE_CASE](https://docs.snowflake.com/en/sql-reference/parameters#quoted-identifiers-ignore-case).
 	QuotedIdentifiersIgnoreCase *bool `json:"quotedIdentifiersIgnoreCase,omitempty" tf:"quoted_identifiers_ignore_case,omitempty"`
@@ -152,6 +156,10 @@ type DatabaseObservation struct {
 	// qualified objects (i.e. '..') by other objects in the same database, such as querying a fully-qualified table name in a view. If a secondary database has a different name from the primary database, then these object references would break in the secondary database. Due to technical limitations (read more here), avoid using the following characters: |, ., ".
 	// Specifies the identifier for the database; must be unique for your account. As a best practice for [Database Replication and Failover](https://docs.snowflake.com/en/user-guide/db-replication-intro), it is recommended to give each secondary database the same name as its primary database. This practice supports referencing fully-qualified objects (i.e. '<db>.<schema>.<object>') by other objects in the same database, such as querying a fully-qualified table name in a view. If a secondary database has a different name from the primary database, then these object references would break in the secondary database. Due to technical limitations (read more [here](../guides/identifiers_rework_design_decisions#known-limitations-and-identifier-recommendations)), avoid using the following characters: `|`, `.`, `"`.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// Preview features enabled for this resource. Overrides provider defaults if set.
+	// +listType=set
+	PreviewFeaturesEnabled []*string `json:"previewFeaturesEnabled,omitempty" tf:"preview_features_enabled,omitempty"`
 
 	// (Boolean) If true, the case of quoted identifiers is ignored. For more information, see QUOTED_IDENTIFIERS_IGNORE_CASE.
 	// If true, the case of quoted identifiers is ignored. For more information, see [QUOTED_IDENTIFIERS_IGNORE_CASE](https://docs.snowflake.com/en/sql-reference/parameters#quoted-identifiers-ignore-case).
@@ -250,6 +258,11 @@ type DatabaseParameters struct {
 	// Specifies the identifier for the database; must be unique for your account. As a best practice for [Database Replication and Failover](https://docs.snowflake.com/en/user-guide/db-replication-intro), it is recommended to give each secondary database the same name as its primary database. This practice supports referencing fully-qualified objects (i.e. '<db>.<schema>.<object>') by other objects in the same database, such as querying a fully-qualified table name in a view. If a secondary database has a different name from the primary database, then these object references would break in the secondary database. Due to technical limitations (read more [here](../guides/identifiers_rework_design_decisions#known-limitations-and-identifier-recommendations)), avoid using the following characters: `|`, `.`, `"`.
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// Preview features enabled for this resource. Overrides provider defaults if set.
+	// +kubebuilder:validation:Optional
+	// +listType=set
+	PreviewFeaturesEnabled []*string `json:"previewFeaturesEnabled,omitempty" tf:"preview_features_enabled,omitempty"`
 
 	// (Boolean) If true, the case of quoted identifiers is ignored. For more information, see QUOTED_IDENTIFIERS_IGNORE_CASE.
 	// If true, the case of quoted identifiers is ignored. For more information, see [QUOTED_IDENTIFIERS_IGNORE_CASE](https://docs.snowflake.com/en/sql-reference/parameters#quoted-identifiers-ignore-case).

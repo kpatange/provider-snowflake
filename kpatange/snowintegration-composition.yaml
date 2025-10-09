@@ -1,0 +1,54 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: sfintegration
+  #namespace: crossplane-system  # Add this if using namespaced Compositions
+  labels:
+    provider: snowflake
+    crossplane.io/xrd: sfintegrations.data.volvocars.com
+spec:
+  compositeTypeRef:
+    apiVersion: data.volvocars.com/v1alpha1
+    kind: SfIntegration
+  mode: Pipeline
+  pipeline:
+    - step: go-template
+      functionRef:
+        name: go-templating
+      input:
+        apiVersion: gotemplating.fn.crossplane.io/v1beta1
+        kind: GoTemplate
+        source: Inline
+        inline:
+          template: |
+            {{- $spec := $.observed.composite.resource.spec }}
+            {{- $metadata := $.observed.composite.resource.metadata }}
+            {{- $integrationName := $spec.name | upper }}
+            {{- $storageProvider := $spec.storageProvider | default "AZURE" | upper }}
+            {{- $azureTenantId := $spec.azureTenantId | default "00000000-0000-0000-0000-000000000000" }}
+            {{- $allowedLocations := $spec.allowedLocations | default (list "https://example.blob.core.windows.net") }}
+            {{- $comment := $spec.comment | default "Storage Integration for external stage access" }}
+
+            ---
+            apiVersion: snowflakeexecute.crossplane.io/v1alpha1
+            kind: Execute
+            metadata:
+              name: {{ $metadata.name }}-storage-integration
+              annotations:
+                meta.upbound.io/example-id: snowflakeexecute/v1alpha1/execute
+                gotemplating.fn.crossplane.io/composition-resource-name: {{ $metadata.name }}-storage-integration
+            spec:
+              forProvider:
+                execute: |-
+                  CREATE STORAGE INTEGRATION {{ $integrationName }}
+                  TYPE = EXTERNAL_STAGE
+                  STORAGE_PROVIDER = '{{ $storageProvider }}'
+                  ENABLED = TRUE
+                  STORAGE_ALLOWED_LOCATIONS = ({{ range $i, $loc := $allowedLocations }}{{ if $i }}, {{ end }}'{{ $loc }}'{{ end }})
+                  AZURE_TENANT_ID = '{{ $azureTenantId }}'
+                  COMMENT = '{{ $comment }}';
+                revert: |-
+                  DROP STORAGE INTEGRATION IF EXISTS {{ $integrationName }};
+    - step: automatically-detect-ready-composed-resources
+      functionRef:
+        name: auto-ready

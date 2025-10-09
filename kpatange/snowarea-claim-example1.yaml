@@ -1,0 +1,22 @@
+apiVersion: snowflake.crossplane.io/v1alpha1
+kind: SnowflakePipelineClaim
+metadata:
+  name: maximodb
+  namespace: crossplane-system
+spec:
+  name: maximodb
+  schema:
+    name: data_schema
+    managedAccess: true
+    dataRetentionTimeInDays: 90
+    comment: "Main data schema for ETL pipelines"
+  fileFormat:
+    name: csv_etl_format
+    type: CSV
+    compression: AUTO
+    fieldDelimiter: ","
+    skipHeader: 1
+    nullIf:
+      - "NULL"
+      - "null"
+      - ""

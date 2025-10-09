@@ -3,6 +3,6 @@ kind: Provider
 metadata:
   name: provider-snowflake-volvocars
 spec:
-  package: ghcr.io/kpatange/provider-snowflake-volvocars:v0.0.4
+  package: ghcr.io/kpatange/provider-snowflake-volvocars:v0.0.3
   packagePullSecrets:
     - name: ghcr-secret

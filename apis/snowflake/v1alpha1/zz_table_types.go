@@ -274,6 +274,10 @@ type TableInitParameters struct {
 	// The database in which to create the table.
 	Database *string `json:"database,omitempty" tf:"database,omitempty"`
 
+	// Preview features enabled for this resource. Overrides provider defaults if set.
+	// +listType=set
+	PreviewFeaturesEnabled []*string `json:"previewFeaturesEnabled,omitempty" tf:"preview_features_enabled,omitempty"`
+
 	// (Block List, Max: 1, Deprecated) Definitions of primary key constraint to create on table (see below for nested schema)
 	// Definitions of primary key constraint to create on table
 	PrimaryKey []PrimaryKeyInitParameters `json:"primaryKey,omitempty" tf:"primary_key,omitempty"`
@@ -324,6 +328,10 @@ type TableObservation struct {
 	// Name of the role that owns the table.
 	Owner *string `json:"owner,omitempty" tf:"owner,omitempty"`
 
+	// Preview features enabled for this resource. Overrides provider defaults if set.
+	// +listType=set
+	PreviewFeaturesEnabled []*string `json:"previewFeaturesEnabled,omitempty" tf:"preview_features_enabled,omitempty"`
+
 	// (Block List, Max: 1, Deprecated) Definitions of primary key constraint to create on table (see below for nested schema)
 	// Definitions of primary key constraint to create on table
 	PrimaryKey []PrimaryKeyObservation `json:"primaryKey,omitempty" tf:"primary_key,omitempty"`
@@ -368,6 +376,11 @@ type TableParameters struct {
 	// The database in which to create the table.
 	// +kubebuilder:validation:Optional
 	Database *string `json:"database,omitempty" tf:"database,omitempty"`
+
+	// Preview features enabled for this resource. Overrides provider defaults if set.
+	// +kubebuilder:validation:Optional
+	// +listType=set
+	PreviewFeaturesEnabled []*string `json:"previewFeaturesEnabled,omitempty" tf:"preview_features_enabled,omitempty"`
 
 	// (Block List, Max: 1, Deprecated) Definitions of primary key constraint to create on table (see below for nested schema)
 	// Definitions of primary key constraint to create on table

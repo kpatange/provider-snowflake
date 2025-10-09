@@ -1706,6 +1706,17 @@ func (in *PipeInitParameters) DeepCopyInto(out *PipeInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.PreviewFeaturesEnabled != nil {
+		in, out := &in.PreviewFeaturesEnabled, &out.PreviewFeaturesEnabled
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
+	}
 	if in.Schema != nil {
 		in, out := &in.Schema, &out.Schema
 		*out = new(string)
@@ -1813,6 +1824,17 @@ func (in *PipeObservation) DeepCopyInto(out *PipeObservation) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.PreviewFeaturesEnabled != nil {
+		in, out := &in.PreviewFeaturesEnabled, &out.PreviewFeaturesEnabled
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
+	}
 	if in.Schema != nil {
 		in, out := &in.Schema, &out.Schema
 		*out = new(string)
@@ -1867,6 +1889,17 @@ func (in *PipeParameters) DeepCopyInto(out *PipeParameters) {
 		in, out := &in.Integration, &out.Integration
 		*out = new(string)
 		**out = **in
+	}
+	if in.PreviewFeaturesEnabled != nil {
+		in, out := &in.PreviewFeaturesEnabled, &out.PreviewFeaturesEnabled
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
 	}
 	if in.Schema != nil {
 		in, out := &in.Schema, &out.Schema
@@ -3268,6 +3301,17 @@ func (in *StageInitParameters) DeepCopyInto(out *StageInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.PreviewFeaturesEnabled != nil {
+		in, out := &in.PreviewFeaturesEnabled, &out.PreviewFeaturesEnabled
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
+	}
 	if in.Schema != nil {
 		in, out := &in.Schema, &out.Schema
 		*out = new(string)
@@ -3387,6 +3431,17 @@ func (in *StageObservation) DeepCopyInto(out *StageObservation) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.PreviewFeaturesEnabled != nil {
+		in, out := &in.PreviewFeaturesEnabled, &out.PreviewFeaturesEnabled
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
+	}
 	if in.Schema != nil {
 		in, out := &in.Schema, &out.Schema
 		*out = new(string)
@@ -3468,6 +3523,17 @@ func (in *StageParameters) DeepCopyInto(out *StageParameters) {
 		in, out := &in.FileFormat, &out.FileFormat
 		*out = new(string)
 		**out = **in
+	}
+	if in.PreviewFeaturesEnabled != nil {
+		in, out := &in.PreviewFeaturesEnabled, &out.PreviewFeaturesEnabled
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
 	}
 	if in.Schema != nil {
 		in, out := &in.Schema, &out.Schema
@@ -3611,6 +3677,17 @@ func (in *TableInitParameters) DeepCopyInto(out *TableInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.PreviewFeaturesEnabled != nil {
+		in, out := &in.PreviewFeaturesEnabled, &out.PreviewFeaturesEnabled
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
+	}
 	if in.PrimaryKey != nil {
 		in, out := &in.PrimaryKey, &out.PrimaryKey
 		*out = make([]PrimaryKeyInitParameters, len(*in))
@@ -3730,6 +3807,17 @@ func (in *TableObservation) DeepCopyInto(out *TableObservation) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.PreviewFeaturesEnabled != nil {
+		in, out := &in.PreviewFeaturesEnabled, &out.PreviewFeaturesEnabled
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
+	}
 	if in.PrimaryKey != nil {
 		in, out := &in.PrimaryKey, &out.PrimaryKey
 		*out = make([]PrimaryKeyObservation, len(*in))
@@ -3801,6 +3889,17 @@ func (in *TableParameters) DeepCopyInto(out *TableParameters) {
 		in, out := &in.Database, &out.Database
 		*out = new(string)
 		**out = **in
+	}
+	if in.PreviewFeaturesEnabled != nil {
+		in, out := &in.PreviewFeaturesEnabled, &out.PreviewFeaturesEnabled
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
 	}
 	if in.PrimaryKey != nil {
 		in, out := &in.PrimaryKey, &out.PrimaryKey

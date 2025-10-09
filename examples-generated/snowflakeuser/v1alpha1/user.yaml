@@ -5,7 +5,11 @@ metadata:
     meta.upbound.io/example-id: snowflakeuser/v1alpha1/user
   labels:
     testing.upbound.io/example-name: minimal
-  name: minimal
+  name: minimal2
 spec:
   forProvider:
-    name: Snowflake User - minimal
+    name: mike
+    passwordSecretRef:
+      key: password
+      name: snowflake-creds
+      namespace: crossplane-system

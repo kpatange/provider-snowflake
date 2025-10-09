@@ -178,6 +178,13 @@ spec:
                       (String) The database in which to create the table.
                       The database in which to create the table.
                     type: string
+                  previewFeaturesEnabled:
+                    description: Preview features enabled for this resource. Overrides
+                      provider defaults if set.
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
                   primaryKey:
                     description: |-
                       (Block List, Max: 1, Deprecated) Definitions of primary key constraint to create on table (see below for nested schema)
@@ -351,6 +358,13 @@ spec:
                       (String) The database in which to create the table.
                       The database in which to create the table.
                     type: string
+                  previewFeaturesEnabled:
+                    description: Preview features enabled for this resource. Overrides
+                      provider defaults if set.
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
                   primaryKey:
                     description: |-
                       (Block List, Max: 1, Deprecated) Definitions of primary key constraint to create on table (see below for nested schema)
@@ -714,6 +728,13 @@ spec:
                       (String) Name of the role that owns the table.
                       Name of the role that owns the table.
                     type: string
+                  previewFeaturesEnabled:
+                    description: Preview features enabled for this resource. Overrides
+                      provider defaults if set.
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
                   primaryKey:
                     description: |-
                       (Block List, Max: 1, Deprecated) Definitions of primary key constraint to create on table (see below for nested schema)
